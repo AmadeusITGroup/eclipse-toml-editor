@@ -1,0 +1,78 @@
+[build-system]
+requires = [
+    "setuptools >= 48",
+    "setuptools_scm[toml] >= 4, <6",
+    "setuptools_scm_git_archive",
+    "wheel >= 0.29.0",
+    "bdist_pyinstaller"
+]
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools_scm]
+write_to = "source/console/version.py"
+git_describe_command = "git describe --dirty --tags --long --match v* --first-parent"
+
+[tool.pytest.ini_options]
+minversion = "6.2.2"
+testpaths = [
+    "tests"
+]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py37, report
+
+[tool:pytest]
+testpaths = tests
+addopts =
+    --cov-report=term-missing
+    --cov-append
+
+[testenv:flake8]
+basepython = python
+commands = flake8 source tests
+
+[testenv]
+deps =
+    pytest
+    pytest-xdist
+    pytest-cov
+    coverage
+    flake8
+    safety
+    bandit
+depends =
+    py37: clean
+    report: py37
+setenv =
+    PYTHONPATH = {toxinidir}:{env:PYTHONPATH:}:source
+passenv =
+    HOST
+    USER
+    USERNAME
+    LOGNAME
+commands =
+    pytest --cov {posargs:-vv -n 2}
+    safety check --full-report --output chelo.safety.txt
+    bandit --exit-zero -r source --output=chelo.bandit.html --format=html
+
+[testenv:report]
+skip_install = true
+deps = coverage
+commands =
+    coverage html
+    coverage xml
+    coverage report --fail-under=35
+
+[testenv:clean]
+deps = coverage
+skip_install = true
+commands = coverage erase
+"""
+
+[misc]
+one = 123
+two = 2.3
+three = 0x129A
+four = 0o123

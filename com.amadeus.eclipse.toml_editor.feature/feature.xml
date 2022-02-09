@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.amadeus.eclipse.toml_editor.feature"
+      label="TOML Editor Feature"
+      version="1.0.0.qualifier"
+      provider-name="Amadeus Data Processing GmbH">
+
+   <description url="http://eclipse.kacprzak.org/toml">
+      TOML Editor.
+This version covers:
+- syntax coloring
+- auto edition
+- colors configuration
+   </description>
+
+   <copyright url="http://eclipse.kacprzak.org/toml/copyright.html">
+      Copyright (c) 2012 Zbigniew Kacprzak
+   </copyright>
+
+   <license url="http://eclipse.kacprzak.org/toml/copyright.html">
+      Eclipse Plugin License
+   </license>
+
+   <url>
+      <update label="TOML Editor" url="http://eclipse.kacprzak.org/toml/updates/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.editors"/>
+   </requires>
+
+   <plugin
+         id="com.amadeus.eclipse.toml_editor.plugin"
+         download-size="75"
+         install-size="75"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

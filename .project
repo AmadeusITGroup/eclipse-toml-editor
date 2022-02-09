@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>toml-editor</name>
+	<comment></comment>
+	<projects>
+		<project>com.amadeus.eclipse.toml_editor.feature</project>
+		<project>com.amadeus.eclipse.toml_editor.plugin</project>
+		<project>com.amadeus.eclipse.toml_editor.updates</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+</projectDescription>

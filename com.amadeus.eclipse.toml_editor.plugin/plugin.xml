@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="toml, ini, cfg, config, properties"
+            id="com.amadeus.eclipse.toml_editor.plugin.toml"
+            name="TOML File"
+            priority="normal">
+      </content-type>
+   </extension>
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="com.amadeus.eclipse.toml_editor.plugin.TomlTextEditor"
+            default="true"
+            extensions="toml, ini, cfg, config, properties"
+            icon="icons/toml.png"
+            id="com.amadeus.eclipse.toml_editor.plugin.TomlEditor"
+            name="TOML Editor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.core.filebuffers.documentSetup">
+      <participant
+            class="com.amadeus.eclipse.toml_editor.plugin.ValidatorDocumentSetupParticipant"
+            contentTypeId="com.amadeus.eclipse.toml_editor.plugin.toml"
+            extensions="toml">
+      </participant>
+   </extension>
+   <extension point="org.eclipse.ui.themes">
+      <themeElementCategory
+            id="com.amadeus.eclipse.toml_editor.plugin.settings"
+            label="TOML Editor">
+      </themeElementCategory>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.tableName"
+            isEditable="true"
+            label="Table Name"
+            value="50,50,255">
+      </colorDefinition>
+      <fontDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.tableNameFont"
+            isEditable="true"
+            label="Table Name Font"
+            value="Consolas-bold italic-11">
+      </fontDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.keyName"
+            isEditable="true"
+            label="Key Name"
+            value="40,140,40">
+      </colorDefinition>
+      <fontDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            defaultsTo="org.eclipse.jface.textfont"
+            id="com.amadeus.eclipse.toml_editor.plugin.keyNameFont"
+            isEditable="true"
+            label="Key Name Font">
+      </fontDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.string"
+            isEditable="true"
+            label="String"
+            value="205,87,154">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.number"
+            label="Number"
+            value="204,51,0">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.comment"
+            label="Comment"
+            value="130,130,130">
+      </colorDefinition>
+      <fontDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.commentFont"
+            isEditable="true"
+            label="Comment Font"
+            value="Consolas-italic-11">
+      </fontDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.delimeter"
+            label="Delimeter"
+            value="255,0,0">
+      </colorDefinition>
+   </extension>
+</plugin>
