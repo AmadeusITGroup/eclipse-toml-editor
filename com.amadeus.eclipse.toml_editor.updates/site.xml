@@ -3,5 +3,4 @@
    <description name="TOML Editor" url="http://eclipse.kacprzak.org/toml/updates">
       TOML Editor updates page
    </description>
-   <feature url="features/com.amadeus.eclipse.toml_editor.feature_1.0.0.202202081818.jar" id="com.amadeus.eclipse.toml_editor.feature" version="1.0.0.202202081818"/>
 </site>
