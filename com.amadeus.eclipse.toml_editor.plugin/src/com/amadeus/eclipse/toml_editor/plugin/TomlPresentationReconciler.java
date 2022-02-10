@@ -13,7 +13,6 @@ import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.EndOfLineRule;
 import org.eclipse.jface.text.rules.IRule;
-import org.eclipse.jface.text.rules.NumberRule;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.swt.SWT;
@@ -24,6 +23,8 @@ import org.eclipse.ui.themes.ITheme;
 import org.eclipse.ui.themes.IThemeManager;
 
 import com.amadeus.eclipse.toml_editor.plugin.rules.KeyValuePairRule;
+import com.amadeus.eclipse.toml_editor.plugin.rules.KeywordRule;
+import com.amadeus.eclipse.toml_editor.plugin.rules.NumberTimestampRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.SectionNameRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndMultilineRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndRule;
@@ -54,6 +55,7 @@ public class TomlPresentationReconciler extends PresentationReconciler {
         Color cmtColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.comment");
         Color numColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.number");
         Color delColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.delimeter");
+        Color wrdColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.keyword");
 
         Font tableFont = fontRegistry.get("com.amadeus.eclipse.toml_editor.plugin.tableNameFont");
         Font keyFont = fontRegistry.get("com.amadeus.eclipse.toml_editor.plugin.keyNameFont");
@@ -69,6 +71,7 @@ public class TomlPresentationReconciler extends PresentationReconciler {
         KeyValuePairRule kvp = new KeyValuePairRule(new Token(new TextAttribute(keyColor, null, SWT.NORMAL, keyFont)), 
                                                     new Token(new TextAttribute(delColor)));
         rules_list.add(kvp);
+        rules_list.add(new KeywordRule(new Token(new TextAttribute(wrdColor))));
         // @formatter:on
 
 
@@ -76,7 +79,7 @@ public class TomlPresentationReconciler extends PresentationReconciler {
         rules_list.add(new StartEndMultilineRule("'''", "'''", new Token(new TextAttribute(strColor)), (char) '\\'));
         rules_list.add(new StartEndRule("'", "'", new Token(new TextAttribute(strColor)), (char) '\\'));
         rules_list.add(new StartEndRule("\"", "\"", new Token(new TextAttribute(strColor)), (char) '\\'));
-        rules_list.add(new NumberRule(new Token(new TextAttribute(numColor))));
+        rules_list.add(new NumberTimestampRule(new Token(new TextAttribute(numColor))));
 
         IRule[] aruls = rules_list.toArray(new IRule[rules_list.size()]);
         scanner.setRules(aruls);

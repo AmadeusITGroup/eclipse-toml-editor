@@ -93,5 +93,12 @@
             label="Delimeter"
             value="255,0,0">
       </colorDefinition>
+      <colorDefinition
+            categoryId="com.amadeus.eclipse.toml_editor.plugin.settings"
+            id="com.amadeus.eclipse.toml_editor.plugin.keyword"
+            isEditable="true"
+            label="Keyword"
+            value="255, 113, 45">
+      </colorDefinition>
    </extension>
 </plugin>

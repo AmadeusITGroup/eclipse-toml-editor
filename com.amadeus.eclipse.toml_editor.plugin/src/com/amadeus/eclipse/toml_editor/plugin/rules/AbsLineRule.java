@@ -10,7 +10,7 @@ public abstract class AbsLineRule implements IRule {
     }
 
     public boolean isWhitespace(int c) {
-    	return c == ' ' || c == '\t';
+        return c == ' ' || c == '\t';
     }
     
     public boolean isNewLine(String str) {
@@ -18,14 +18,23 @@ public abstract class AbsLineRule implements IRule {
     }
 
     public boolean isNewLine(int c) {
-    	return c == ICharacterScanner.EOF || c == '\n' || c == '\r';
+        return c == ICharacterScanner.EOF || c == '\n' || c == '\r';
     }
 
     public String readLine(ICharacterScanner scanner) {
+        return readLine(scanner, "");
+    }
+
+    public String readLine(ICharacterScanner scanner, String breakChars) {
         String str = "";
         int c;
         while ((c = scanner.read()) != ICharacterScanner.EOF) {
-            str += Character.toString((char) c);
+        	String s = Character.toString((char) c);
+            if (breakChars.contains(s)) {
+                scanner.unread();
+                break;
+            }
+            str += s;
             if ('\n' == c || '\r' == c) {
                 c = scanner.read();
                 if ('\n' == c || '\r' == c) {
@@ -37,7 +46,7 @@ public abstract class AbsLineRule implements IRule {
         }
         return str;
     }
-
+    
     public boolean isFullLine(ICharacterScanner scanner, String line) {
         int count = Math.max(0, line.length());
         for (int i=0; i<=count; i++)
