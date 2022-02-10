@@ -1,7 +1,6 @@
 package com.amadeus.eclipse.toml_editor.plugin.outline;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -144,7 +143,7 @@ class TomlLabelProvider extends LabelProvider {
         super();
     }
     public Image getImage(Object element) {
-        return ((TomlDocTag) element).image;
+        return ((TomlDocTag) element).getImage();
     }
     
 }

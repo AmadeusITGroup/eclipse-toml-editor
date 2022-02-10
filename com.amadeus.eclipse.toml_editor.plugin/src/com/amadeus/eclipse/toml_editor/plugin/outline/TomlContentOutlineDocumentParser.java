@@ -33,6 +33,35 @@ class TomlContentOutlineDocumentParser {
         fContent = iContent;
     }
     
+    private TomlDocTag findAndCheckParent(TomlDocTag aTag, TomlDocTag aCurrentSection) {
+//        List<TomlDocTag> searchContent = fContent;
+//        if (aCurrentSection != null)
+//            searchContent = aCurrentSection.children;
+//        String names[] = aTag.tokenValue.split("\\.");
+//        TomlDocTag aPrevTag = searchContent.size() > 0 ? searchContent.get(0) : null;
+//        String kname = "";
+//        if (names.length > 0) {
+//        for (String name : names) {
+//            kname = kname.length() > 0 ? kname + "." + name : name;
+//            final String aaa = kname;
+//            if (searchContent.stream().filter(e->e.tokenValue.equals(aaa)).count() == 0) {
+//                TomlDocTag tag = new TomlDocTag(TokenType.KEY, name, aTag.lineNumber, aTag.documentOffset, aTag.lineLength);
+//                aTag.parent = aPrevTag;
+//                if (aPrevTag != null)
+//                    aPrevTag.children.add(tag);
+//                else
+//                    fContent.add(tag);
+//                aPrevTag = tag;
+//            }
+//        }
+//        }
+//        for (TomlDocTag aCandTag : searchContent) {
+//            if (aTag.tokenValue.startsWith(aCandTag.tokenValue))
+//                return aCandTag;
+//        }
+        return aCurrentSection;
+    }
+
     void parseDocument(IDocument document) {
         String blockOne = "\"\"\"";
         String blockTwo = "'''";
@@ -87,9 +116,10 @@ class TomlContentOutlineDocumentParser {
                             fContent.add(aTag);
                             break;
                         case KEY:
-                            aTag.parent = aCurrentSection;
-                            if (aCurrentSection != null)
-                                aCurrentSection.children.add(aTag);
+                            TomlDocTag aParent = findAndCheckParent(aTag, aCurrentSection);
+                            aTag.parent = aParent;
+                            if (aParent != null)
+                                aParent.children.add(aTag);
                             else
                                 fContent.add(aTag);
                             break;
@@ -138,6 +168,13 @@ class TomlDocTag {
         return ret;
     }
     
+    public Image getImage() {
+        if (tokenType == TokenType.KEY && children.size() > 0) {
+            ImageRegistry registry = TomlEditorPlugin.getDefault().getImageRegistry();
+            return registry.get("icons/parent.gif");
+        }
+        return image;
+    }
 
     private Image getTokenTypeImage() {
         String aImageName = null;

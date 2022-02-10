@@ -28,7 +28,7 @@ public class KeyValuePairRule extends AbsLineRule {
     @Override
     public IToken evaluate(ICharacterScanner scanner) {
 
-        String str = readLine(scanner);
+        String str = readLine(scanner, "#\r\n");
         if (isPropertyName(str)) {
             // we might have: "  tab_before = true"
             // we need to rewind till '=' character, so then scanner is in a good shape

@@ -52,6 +52,7 @@ public class TomlEditorPlugin extends AbstractUIPlugin {
         String[] images = {
             "icons/outl_section.gif",
             "icons/outl_key.gif",
+            "icons/parent.gif",
             "icons/toml.png",
         };
         for (String imageID : images) {

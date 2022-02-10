@@ -24,10 +24,11 @@ import org.eclipse.ui.themes.IThemeManager;
 
 import com.amadeus.eclipse.toml_editor.plugin.rules.KeyValuePairRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.KeywordRule;
-import com.amadeus.eclipse.toml_editor.plugin.rules.NumberTimestampRule;
+import com.amadeus.eclipse.toml_editor.plugin.rules.AnyNumberRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.SectionNameRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndMultilineRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndRule;
+import com.amadeus.eclipse.toml_editor.plugin.rules.TimestampRule;
 
 public class TomlPresentationReconciler extends PresentationReconciler {
     private RuleBasedScanner scanner;
@@ -56,6 +57,7 @@ public class TomlPresentationReconciler extends PresentationReconciler {
         Color numColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.number");
         Color delColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.delimeter");
         Color wrdColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.keyword");
+        Color tsmColor = colorRegistry.get("com.amadeus.eclipse.toml_editor.plugin.timestamp");
 
         Font tableFont = fontRegistry.get("com.amadeus.eclipse.toml_editor.plugin.tableNameFont");
         Font keyFont = fontRegistry.get("com.amadeus.eclipse.toml_editor.plugin.keyNameFont");
@@ -72,6 +74,8 @@ public class TomlPresentationReconciler extends PresentationReconciler {
                                                     new Token(new TextAttribute(delColor)));
         rules_list.add(kvp);
         rules_list.add(new KeywordRule(new Token(new TextAttribute(wrdColor))));
+        rules_list.add(new TimestampRule(new Token(new TextAttribute(tsmColor))));
+        rules_list.add(new AnyNumberRule(new Token(new TextAttribute(numColor))));
         // @formatter:on
 
 
@@ -79,7 +83,6 @@ public class TomlPresentationReconciler extends PresentationReconciler {
         rules_list.add(new StartEndMultilineRule("'''", "'''", new Token(new TextAttribute(strColor)), (char) '\\'));
         rules_list.add(new StartEndRule("'", "'", new Token(new TextAttribute(strColor)), (char) '\\'));
         rules_list.add(new StartEndRule("\"", "\"", new Token(new TextAttribute(strColor)), (char) '\\'));
-        rules_list.add(new NumberTimestampRule(new Token(new TextAttribute(numColor))));
 
         IRule[] aruls = rules_list.toArray(new IRule[rules_list.size()]);
         scanner.setRules(aruls);
