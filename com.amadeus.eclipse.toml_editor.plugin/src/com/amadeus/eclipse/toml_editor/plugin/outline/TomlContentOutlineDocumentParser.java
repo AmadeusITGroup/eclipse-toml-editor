@@ -29,7 +29,7 @@ import com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin;
  */
 class TomlContentOutlineDocumentParser {
     
-    private boolean outline_structured = true; // outline view with hierarchy of items
+    private boolean outline_hierarchy = true; // outline view with hierarchy of items
     private int max_depth = 1;                 // set -1 to have unlimited depth of split (see: findAndCheckParent)
 
     private List<TomlDocTag> fContent;// = new ArrayList<DjDocTag>();
@@ -50,7 +50,7 @@ class TomlContentOutlineDocumentParser {
         return out;
     }
     private TomlDocTag findAndCheckParent(TomlDocTag aTag, TomlDocTag aCurrentSection) {
-        if (!outline_structured)
+        if (!outline_hierarchy)
             return aCurrentSection;
 
         /*

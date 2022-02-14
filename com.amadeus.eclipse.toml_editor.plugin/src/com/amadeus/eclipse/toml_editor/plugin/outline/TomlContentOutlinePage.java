@@ -11,6 +11,7 @@
 
 package com.amadeus.eclipse.toml_editor.plugin.outline;
 
+import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -51,7 +52,8 @@ public class TomlContentOutlinePage extends ContentOutlinePage {
 
         TreeViewer viewer= getTreeViewer();
         viewer.setContentProvider(new TomlContentOutlineProvider(fDocumentProvider, fInput));
-        viewer.setLabelProvider(new TomlLabelProvider());
+        viewer.setUseHashlookup(true);
+        viewer.setLabelProvider(new DelegatingStyledCellLabelProvider(new TomlLabelProvider()));
         viewer.addSelectionChangedListener(this);
 
         if (fInput != null) {
