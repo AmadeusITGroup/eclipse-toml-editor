@@ -4,14 +4,19 @@ Some ideas of improvements
 1. Hierarchical layout in Outline View
    Tables (sections) can contain hierarchical structure: [name1.name2.name3]
    We should be able to display them as tree
+   It should be done with action button in Outline View
    
 2. TOML validator 
    Validation with errors highligting
    
 3. Data types highlighting
-   Currently only strings and numbers are coloured. To be syntax-highlighted:
-   - timestamp (ISO)
-   - boolean (true/false)
+   Currently coloured are:
+    - strings
+    - numbers
+    - timestamp (ISO)
+    - boolean (true/false)
+   To be added:
+    - arrays
    
 4. Action: serialize to JSON
    One should be able to easilty serialize TOML file to JSON format.

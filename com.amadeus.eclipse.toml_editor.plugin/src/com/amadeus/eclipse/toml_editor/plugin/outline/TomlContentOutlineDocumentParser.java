@@ -12,7 +12,9 @@
 package com.amadeus.eclipse.toml_editor.plugin.outline;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,38 +29,85 @@ import com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin;
  */
 class TomlContentOutlineDocumentParser {
     
+    private boolean outline_structured = true; // outline view with hierarchy of items
+    private int max_depth = 1;                 // set -1 to have unlimited depth of split (see: findAndCheckParent)
+
     private List<TomlDocTag> fContent;// = new ArrayList<DjDocTag>();
+    private Map<String, TomlDocTag> fParentsMap = new HashMap<>();
 
     TomlContentOutlineDocumentParser(List<TomlDocTag> iContent) {
         fContent = iContent;
     }
     
+    private String getParentName(String aTagName) {
+        String out = "";
+        String names[] = aTagName.split("\\.");
+        for (int i=0; i<names.length-1; i++) { // all but last one
+            if (out.length() > 0)
+                out += ".";
+            out += names[i];
+        }
+        return out;
+    }
     private TomlDocTag findAndCheckParent(TomlDocTag aTag, TomlDocTag aCurrentSection) {
-//        List<TomlDocTag> searchContent = fContent;
-//        if (aCurrentSection != null)
-//            searchContent = aCurrentSection.children;
-//        String names[] = aTag.tokenValue.split("\\.");
-//        TomlDocTag aPrevTag = searchContent.size() > 0 ? searchContent.get(0) : null;
-//        String kname = "";
-//        if (names.length > 0) {
-//        for (String name : names) {
-//            kname = kname.length() > 0 ? kname + "." + name : name;
-//            final String aaa = kname;
-//            if (searchContent.stream().filter(e->e.tokenValue.equals(aaa)).count() == 0) {
-//                TomlDocTag tag = new TomlDocTag(TokenType.KEY, name, aTag.lineNumber, aTag.documentOffset, aTag.lineLength);
-//                aTag.parent = aPrevTag;
-//                if (aPrevTag != null)
-//                    aPrevTag.children.add(tag);
-//                else
-//                    fContent.add(tag);
-//                aPrevTag = tag;
-//            }
-//        }
-//        }
-//        for (TomlDocTag aCandTag : searchContent) {
-//            if (aTag.tokenValue.startsWith(aCandTag.tokenValue))
-//                return aCandTag;
-//        }
+        if (!outline_structured)
+            return aCurrentSection;
+
+        /*
+         * When outline_structured is false, items are assigned only to sections.
+         * Otherwise ewe split items on '.', and each part if potential parent (TokenType.PARENT)
+         * By default we split only to depth-level 1 - otherwise view is too chaotic when we have items with
+         * lots of segments.
+         * 
+         * Example: 
+         *  one.two.three.four.enabled = true
+         *  one.two.three.four.five.item = true
+         *
+         * - outline_structured: true
+         * - depth level inactive: -1
+         *         one
+         *          |_ two
+         *              |_ three
+         *                  |_ four
+         *                      |_ one.two.three.four.enabled
+         *                      |_ five
+         *                          |_ one.two.three.four.five.item
+         *  - depth level active: set to 1
+         *         one
+         *          |_ one.two.three.four.enabled
+         *          |_ one.two.three.four.five.item
+         */
+        TomlDocTag aPrevTag = aCurrentSection != null ? aCurrentSection : null;
+        String pmapkey = aCurrentSection == null ? "DEFAULT|" : aCurrentSection.tokenValue + "|";
+        String kname = "";
+        String names[] = aTag.tokenValue.split("\\.");
+        if (names.length > 1) {
+            String pname = pmapkey + getParentName(aTag.tokenValue);
+            if (!fParentsMap.containsKey(pname)) {
+                for (int i=0; i<names.length-1; i++) { // all but last one
+                    if (i == max_depth)
+                        break;
+                    String name = names[i];
+                    kname = kname.length() > 0 ? kname + "." + name : name;
+                    if (fParentsMap.containsKey(pmapkey + kname)) {
+                        aPrevTag = fParentsMap.get(pmapkey + kname);
+                        continue;
+                    }
+                    TomlDocTag tag = new TomlDocTag(TokenType.PARENT, name);
+                    aTag.parent = aPrevTag;
+                    if (aPrevTag != null)
+                        aPrevTag.children.add(tag);
+                    else
+                        fContent.add(tag);
+                    aPrevTag = tag;
+                    fParentsMap.put(pmapkey + kname, tag);
+                }
+            }
+            if (fParentsMap.containsKey(pname))
+                return fParentsMap.get(pname);
+            if (aPrevTag != null)
+                return aPrevTag;
+        }
         return aCurrentSection;
     }
 
@@ -123,6 +172,8 @@ class TomlContentOutlineDocumentParser {
                             else
                                 fContent.add(aTag);
                             break;
+                        default:
+                            break;
                     }
                 }
             } catch (BadLocationException e) {
@@ -136,7 +187,8 @@ class TomlContentOutlineDocumentParser {
  */
 enum TokenType {
     KEY,
-    SECTION
+    SECTION,
+    PARENT
 };
 class TomlDocTag {
 
@@ -150,8 +202,12 @@ class TomlDocTag {
     int documentOffset = -1;
     Image image;
 
-    TomlDocTag(TokenType iTokType, String iToken, int iLineNo, int iDocOffset, int iLineLength) {
+    TomlDocTag(TokenType iTokType, String iToken) {
+        this(iTokType, iToken, -1, -1, -1);
+    }
 
+    TomlDocTag(TokenType iTokType, String iToken, int iLineNo, int iDocOffset, int iLineLength) {
+        
         tokenValue = iToken;
         tokenType = iTokType;
         lineNumber = iLineNo;
@@ -159,12 +215,12 @@ class TomlDocTag {
         documentOffset = iDocOffset;
         image = getTokenTypeImage();
     }
-
+    
 
     public String toString() {
-        String ret;
-        ret = "[" + lineNumber + "]  " + tokenValue;
-        ret = tokenValue + "   [" + lineNumber + "]";
+        String ret = tokenValue;
+        if (tokenType != TokenType.PARENT)
+            ret += "   [" + lineNumber + "]";
         return ret;
     }
     
@@ -182,6 +238,8 @@ class TomlDocTag {
             aImageName = "icons/outl_section.gif";
         if (tokenType == TokenType.KEY)
             aImageName = "icons/outl_key.gif";
+        if (tokenType == TokenType.PARENT)
+            aImageName = "icons/parent.gif";
         if (aImageName != null) {
             ImageRegistry registry = TomlEditorPlugin.getDefault().getImageRegistry();
             return registry.get(aImageName);

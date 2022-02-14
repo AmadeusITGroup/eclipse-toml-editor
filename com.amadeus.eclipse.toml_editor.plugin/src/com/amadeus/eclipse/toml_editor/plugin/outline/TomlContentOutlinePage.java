@@ -72,13 +72,16 @@ public class TomlContentOutlinePage extends ContentOutlinePage {
             fTextEditor.resetHighlightRange();
         else {
             TomlDocTag element= (TomlDocTag) ((IStructuredSelection) selection).getFirstElement();
-            int len = element.lineLength;
-            len   = 0; // do not select, just move caret to proper line
-            try {
-                fTextEditor.setHighlightRange(element.documentOffset, len, true);
-                fTextEditor.selectAndReveal(element.documentOffset, len);
-            } catch (IllegalArgumentException x) {
+            if (element.lineNumber > 0) {
+                int len = element.lineLength;
                 fTextEditor.resetHighlightRange();
+                len   = 0; // do not select, just move caret to proper line
+                try {
+                    fTextEditor.setHighlightRange(element.documentOffset, len, true);
+                    fTextEditor.selectAndReveal(element.documentOffset, len);
+                } catch (IllegalArgumentException x) {
+                    fTextEditor.resetHighlightRange();
+                }
             }
         }
     }
