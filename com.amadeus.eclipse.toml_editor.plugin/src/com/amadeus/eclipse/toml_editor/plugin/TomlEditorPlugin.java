@@ -54,6 +54,10 @@ public class TomlEditorPlugin extends AbstractUIPlugin {
             "icons/outl_key.gif",
             "icons/parent.gif",
             "icons/toml.png",
+            "icons/folder.gif",
+            "icons/folder_blue.gif",
+            "icons/plugin_dep.gif",
+            "icons/tree.gif",
         };
         for (String imageID : images) {
             IPath path = new Path(imageID);
