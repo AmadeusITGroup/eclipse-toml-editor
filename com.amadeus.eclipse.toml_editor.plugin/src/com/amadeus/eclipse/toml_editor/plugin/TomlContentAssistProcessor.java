@@ -1,16 +1,73 @@
 package com.amadeus.eclipse.toml_editor.plugin;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
+/**
+ * @author zbigniew.kacprzak
+ *
+ */
 public class TomlContentAssistProcessor implements IContentAssistProcessor {
+    public static final List<String> PROPOSALS = Arrays.asList( "true", "false", "today", "tomorrow", "yesterday");
+
+    /**
+     * Find first non-word character moving left from current offset
+     * @param document
+     * @param offset
+     * @return
+     * @throws BadLocationException
+     */
+    private int findReplacementOffset(IDocument document, int offset) throws BadLocationException {
+        int beginLineOffset = document.getLineOffset(document.getLineOfOffset(offset));
+
+        int repOffset = -1;
+        for (int i=offset-1; i >= beginLineOffset; i--) {
+            String t = document.get(i, 1);
+            if (t.matches("\\W")) {
+                repOffset = i + 1;
+                break;
+            }
+        }
+        return repOffset;
+    }
 
     @Override
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
-    	// TODO this is logic for .project file to complete on nature and project references. Replace with your language logic!
+
+        IDocument document = viewer.getDocument();
+        try {
+            int lineIndex = document.getLineOfOffset(offset);
+            int beginLineOffset = document.getLineOffset(lineIndex);
+
+            int lineTextLenght = offset - beginLineOffset;
+            String lineText = document.get(beginLineOffset, lineTextLenght).toLowerCase();
+            if (!lineText.contains("=")) {
+                return new ICompletionProposal[0];
+            }
+
+            final int fromOffset = findReplacementOffset(document, offset) ;
+            String replText = fromOffset < 0 ? "" : document.get(fromOffset, offset - fromOffset).toLowerCase();
+
+            // @formatter:off
+            ICompletionProposal[] props = PROPOSALS.stream()
+                    .filter(p -> fromOffset > 0 && p.toLowerCase().startsWith(replText))
+                    .map(p -> new CompletionProposal(p, fromOffset, offset - fromOffset, p.length()))
+                    .toArray(ICompletionProposal[]::new);
+            return props;
+            // @formatter:on
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        // TODO this is logic for .project file to complete on nature and project references. Replace with your language logic!
 //        String text = viewer.getDocument().get();
 //        String natureTag= "<nature>";
 //        String projectReferenceTag="<project>";
@@ -42,7 +99,9 @@ public class TomlContentAssistProcessor implements IContentAssistProcessor {
 
     @Override
     public char[] getCompletionProposalAutoActivationCharacters() {
-        return new char[] { '"' }; //NON-NLS-1
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";//NON-NLS-1
+        return str.toCharArray();
+        //return new char[] { '"' }; //NON-NLS-1
     }
 
     @Override

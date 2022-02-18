@@ -31,6 +31,7 @@ public class TomlContentOutlinePage extends ContentOutlinePage {
     protected IDocumentProvider fDocumentProvider;
     protected ITextEditor fTextEditor;
 
+    
     /**
      * Creates a content outline page using the given provider and the given editor.
      * 
@@ -61,7 +62,7 @@ public class TomlContentOutlinePage extends ContentOutlinePage {
             viewer.expandAll();
         }
     }
-    
+
     /* (non-Javadoc)
      * Method declared on ContentOutlinePage
      */
