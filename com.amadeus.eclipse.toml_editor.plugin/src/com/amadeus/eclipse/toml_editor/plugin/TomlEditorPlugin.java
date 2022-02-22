@@ -5,6 +5,8 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -58,6 +60,12 @@ public class TomlEditorPlugin extends AbstractUIPlugin {
             "icons/folder_blue.gif",
             "icons/plugin_dep.gif",
             "icons/tree.gif",
+            "icons/outl_plus.gif",
+            "icons/outl_minus.gif",
+            "icons/outl_expand.gif",
+            "icons/outl_up.gif",
+            "icons/outl_down.gif",
+            "icons/outl_refresh.gif",
         };
         for (String imageID : images) {
             IPath path = new Path(imageID);
@@ -66,4 +74,9 @@ public class TomlEditorPlugin extends AbstractUIPlugin {
             registry.put(imageID, desc);
         }
      }
+
+	public static IEclipsePreferences getPreferency() {
+		return InstanceScope.INSTANCE.getNode(TomlEditorPlugin.PLUGIN_ID);
+	}
+
 }

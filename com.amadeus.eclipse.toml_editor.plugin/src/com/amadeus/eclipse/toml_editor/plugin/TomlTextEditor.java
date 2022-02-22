@@ -20,7 +20,6 @@ public class TomlTextEditor extends TextEditor implements IPropertyChangeListene
     public TomlTextEditor() {
         super();
         setSourceViewerConfiguration(new TomlSourceViewerConfiguration());
-        //outlinePage = new DjangoOutlinePage(this);
     }
 
     @Override

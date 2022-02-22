@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors,
  org.eclipse.ui.genericeditor,
  org.eclipse.core.filebuffers,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ org.eclipse.equinox.preferences
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: com.amadeus.eclipse.toml_editor.plugin
 Bundle-ActivationPolicy: lazy
