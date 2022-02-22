@@ -2,7 +2,7 @@
 <feature
       id="com.amadeus.eclipse.toml_editor.feature"
       label="TOML Editor Feature"
-      version="1.0.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="Amadeus Data Processing GmbH">
 
    <description url="http://eclipse.kacprzak.org/toml">
