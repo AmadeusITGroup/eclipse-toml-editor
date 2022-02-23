@@ -13,7 +13,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * The activator class controls the plug-in life cycle
+ * The activator class controls the plug-in life cycle.
+ * 
+ * @author Zbigniew KACPRZAK
  */
 public class TomlEditorPlugin extends AbstractUIPlugin {
 

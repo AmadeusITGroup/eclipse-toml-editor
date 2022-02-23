@@ -8,6 +8,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 class TomlLabelProvider extends LabelProvider implements IColorProvider, IStyledLabelProvider {
     public TomlLabelProvider() {
         super();

@@ -30,6 +30,9 @@ import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndMultilineRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.StartEndRule;
 import com.amadeus.eclipse.toml_editor.plugin.rules.TimestampRule;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class TomlPresentationReconciler extends PresentationReconciler {
     private RuleBasedScanner scanner;
     private ColorRegistry colorRegistry;

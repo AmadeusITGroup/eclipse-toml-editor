@@ -6,6 +6,9 @@ import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class AnyNumberRule extends AbsLineRule {
 
 	private final Token tokenKey;

@@ -11,7 +11,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import com.amadeus.eclipse.toml_editor.plugin.outline.TomlContentOutlinePage;
 
 /**
- * @author Zbigniew Kacprzak
+ * @author Zbigniew KACPRZAK
 */
 public class TomlTextEditor extends TextEditor implements IPropertyChangeListener {
 

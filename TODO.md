@@ -25,7 +25,3 @@ Some ideas of improvements
 5. Configurable comment character: by default '#' only
    One could want also ';' as a comment, so then INI files (Windows) are also displayed properly
    
-Issues
-------
-
-1. Disable XML validator to avoid 'Content is not allowed in prolog'

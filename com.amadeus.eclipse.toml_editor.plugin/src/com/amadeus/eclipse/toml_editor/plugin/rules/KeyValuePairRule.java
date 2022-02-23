@@ -7,6 +7,9 @@ import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class KeyValuePairRule extends AbsLineRule {
 
     private static Pattern PATT_KEY_VALUE = Pattern.compile("\\s*(?<qt>[\"]?)(?<key>[a-zA-Z0-9]\\S*\\k<qt>)\\s*=(?<value>.*)");

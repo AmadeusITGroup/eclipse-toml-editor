@@ -5,8 +5,9 @@ import org.eclipse.jface.text.rules.PatternRule;
 import org.eclipse.jface.text.rules.Token;
 
 /**
- * SingleLineRule with mandatory start and end sequence
- * @author zbigniew.kacprzak
+ * SingleLineRule with mandatory start and end sequence.
+ * 
+ * @author Zbigniew KACPRZAK
  *
  */
 public class StartEndRule extends PatternRule {

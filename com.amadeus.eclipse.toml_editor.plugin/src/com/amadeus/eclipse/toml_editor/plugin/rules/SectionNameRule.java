@@ -7,6 +7,9 @@ import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class SectionNameRule extends AbsLineRule {
 
     private static Pattern PATT_SECTION = Pattern.compile("\\s*\\[\\S+\\]\\s*(#.*)*");

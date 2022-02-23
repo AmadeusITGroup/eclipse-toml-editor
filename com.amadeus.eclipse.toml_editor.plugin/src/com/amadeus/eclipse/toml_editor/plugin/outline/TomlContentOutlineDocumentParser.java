@@ -24,7 +24,8 @@ import org.eclipse.swt.graphics.Image;
 import com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin;
 
 /**
- */
+ * @author Zbigniew KACPRZAK
+*/
 class TomlContentOutlineDocumentParser {
     
     private List<TomlDocTag> fContent;

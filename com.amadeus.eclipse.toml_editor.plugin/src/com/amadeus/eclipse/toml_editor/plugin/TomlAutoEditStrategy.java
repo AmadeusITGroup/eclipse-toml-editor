@@ -9,6 +9,9 @@ import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class TomlAutoEditStrategy implements IAutoEditStrategy {
     private static final String STRING_BLOCKS[] = {
             "\"\"\"",  // NON-NLS-1

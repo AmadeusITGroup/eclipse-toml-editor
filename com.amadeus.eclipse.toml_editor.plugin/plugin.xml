@@ -21,13 +21,6 @@
             name="TOML Editor">
       </editor>
    </extension>
-   <extension point="org.eclipse.core.filebuffers.documentSetup">
-      <participant
-            class="com.amadeus.eclipse.toml_editor.plugin.ValidatorDocumentSetupParticipant"
-            contentTypeId="com.amadeus.eclipse.toml_editor.plugin.toml"
-            extensions="toml">
-      </participant>
-   </extension>
    <extension point="org.eclipse.ui.themes">
       <themeElementCategory
             id="com.amadeus.eclipse.toml_editor.plugin.settings"

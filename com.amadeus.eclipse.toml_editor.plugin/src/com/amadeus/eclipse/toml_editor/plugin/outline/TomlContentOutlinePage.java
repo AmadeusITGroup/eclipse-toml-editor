@@ -34,6 +34,8 @@ import com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin;
 
 /**
  * A content outline page.
+ * 
+ * @author Zbigniew KACPRZAK
  */
 public class TomlContentOutlinePage extends ContentOutlinePage implements ISelectionListener {
 

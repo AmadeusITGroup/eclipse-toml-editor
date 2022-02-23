@@ -3,6 +3,9 @@ package com.amadeus.eclipse.toml_editor.plugin.rules;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IRule;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public abstract class AbsLineRule implements IRule {
 
     public boolean isWhitespace(char c) {

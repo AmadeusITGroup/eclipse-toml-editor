@@ -13,7 +13,7 @@ import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
- * @author zbigniew.kacprzak
+ * @author Zbigniew KACPRZAK
  *
  */
 public class TomlContentAssistProcessor implements IContentAssistProcessor {

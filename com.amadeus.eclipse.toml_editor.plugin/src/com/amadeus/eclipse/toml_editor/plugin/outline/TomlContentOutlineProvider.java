@@ -18,7 +18,8 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin;
 
 /**
- */
+ * @author Zbigniew KACPRZAK
+*/
 class TomlContentOutlineProvider implements ITreeContentProvider {
 
     private final static String SEGMENTS = "__toml_editor_segments"; //$NON-NLS-1$

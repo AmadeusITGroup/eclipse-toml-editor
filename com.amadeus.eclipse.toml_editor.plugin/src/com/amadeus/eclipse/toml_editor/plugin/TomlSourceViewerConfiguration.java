@@ -9,6 +9,9 @@ import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
+/**
+ * @author Zbigniew KACPRZAK
+*/
 public class TomlSourceViewerConfiguration extends TextSourceViewerConfiguration {
     private PresentationReconciler presentationReconciler;
     private IAutoEditStrategy autoEditStrategy;
