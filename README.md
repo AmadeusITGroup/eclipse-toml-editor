@@ -1,6 +1,7 @@
 # TOML Eclipse plugin
 
-Add site in Eclipse: https://github.com/AmadeusITGroup/eclipse-toml-editor/tree/master/com.amadeus.eclipse.toml_editor.updates'
+Add site in Eclipse: 
+https://github.com/AmadeusITGroup/eclipse-toml-editor/tree/master/com.amadeus.eclipse.toml_editor.updates
 and install newest version
 
 
