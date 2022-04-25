@@ -49,10 +49,10 @@ Once other location/webserver is in use:
 ## TEST Installation from ZIP - manual process
 
 1. Build All (site.xml - as above)
-2. Create ZIP with content of <project>\com.amadeus.eclipse.toml_editor.updates
+2. Create ZIP with content of project 'updates'
 3. Add new site in Eclipse: point archive (ZIP) instead of http, give name
 4. Select new site (by name) to install from
-5. Install required feature (watch: newest version of more available)
+5. Install required feature (watch: newest version if more available)
 
 ### Verify:
 - Preferences... -> Appearance -> Colors and Fonts -> TOML Editor (colors, fonts)

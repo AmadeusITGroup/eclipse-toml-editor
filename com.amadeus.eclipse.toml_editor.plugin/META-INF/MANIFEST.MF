@@ -4,7 +4,7 @@ Bundle-Name: Toml Editor Plugin
 Bundle-SymbolicName: com.amadeus.eclipse.toml_editor.plugin;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: com.amadeus.eclipse.toml_editor.plugin.TomlEditorPlugin
-Bundle-Vendor: Amadeus Data Processing GmbH
+Bundle-Vendor: Amadeus
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,

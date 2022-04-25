@@ -15,6 +15,7 @@ Some ideas of improvements
     - numbers
     - timestamp (ISO)
     - boolean (true/false)
+   <br>
    To be added:
     - arrays
    
