@@ -1,15 +1,15 @@
 # TOML Eclipse plugin
 
 Add site in Eclipse: 
-https://github.com/AmadeusITGroup/eclipse-toml-editor/tree/master/com.amadeus.eclipse.toml_editor.updates
-and install newest version
+https://amadeusitgroup.github.io/eclipse-toml-editor/updates
+<br>and install newest version available.
 
 
 ## Eclipse projects
 After you get source from repository, just import main project with 3 sub-projects into workspace:
 - com.amadeus.eclipse.toml_editor.feature
-- com.amadeus.eclipse.toml_editor.updates
 - com.amadeus.eclipse.toml_editor.plugin
+- updates
 
 ## Run to test
 
@@ -30,21 +30,23 @@ One can generate plugin and/or feature step-by-step
 1. Open com.amadeus.eclipse.taml_editor.plugin/plugin.xml
    - Use Export Wizard
    - Destination: specify directory where to put jar file with plugin
-     hint: Browse to select <project>\com.amadeus.eclipse.toml_editor.updates
+     hint: Browse to select 'com.amadeus.eclipse.toml_editor.updates'
 2. Open com.amadeus.eclipse.toml_editor.feature/feature.xml
    - Use Export Wizard
    - Destination: specify directory where to put jar file with plugin
-     hint: Browse to select <project>\com.amadeus.eclipse.toml_editor.updates
-3. Open com.amadeus.eclipse.toml_editor.updates/site.xml
+     hint: Browse to select 'updates'
+3. Open updates/site.xml
    - Build
    
 ## Publish
 
-1. Copy content of <project>\com.amadeus.eclipse.toml_editor.updates
-   to your updates page.
+With pages.github we have plugin 'published' automatically when 'updates' project is pushed.
+Once other location/webserver is in use:
+
+1. Copy content of project 'updates' to your updates page.
 
    
-## Installation from ZIP - manual process
+## TEST Installation from ZIP - manual process
 
 1. Build All (site.xml - as above)
 2. Create ZIP with content of <project>\com.amadeus.eclipse.toml_editor.updates

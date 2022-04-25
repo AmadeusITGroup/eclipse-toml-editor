@@ -5,7 +5,7 @@
 	<projects>
 		<project>com.amadeus.eclipse.toml_editor.feature</project>
 		<project>com.amadeus.eclipse.toml_editor.plugin</project>
-		<project>com.amadeus.eclipse.toml_editor.updates</project>
+		<project>updates</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

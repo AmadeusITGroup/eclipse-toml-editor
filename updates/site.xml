@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="TOML Editor" url="https://github.com/AmadeusITGroup/eclipse-toml-editor/tree/master/com.amadeus.eclipse.toml_editor.updates">
+   <description name="TOML Editor" url="https://amadeusitgroup.github.io/eclipse-toml-editor/updates">
       TOML Editor updates page
    </description>
    <feature url="features/com.amadeus.eclipse.toml_editor.feature_1.2.0.202202221201.jar" id="com.amadeus.eclipse.toml_editor.feature" version="1.2.0.202202221201"/>
