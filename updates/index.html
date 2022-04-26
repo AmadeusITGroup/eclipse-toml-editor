@@ -1,18 +1,91 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link media="all" rel="stylesheet" href="docs/toml.css" />
     <title>TOML Editor for Eclipse</title>
   </head>
   <body>
+    <div id="container" class="center">
 
     <h1>TOML Editor - plugin for Eclipse</h1>
     
-    Description will come...
+    <p><a href="https://toml.io/en/" target="_blank">TOML</a> is a widely used language for configuration files (for example: Python testing with TOX). 
+    <br/>It is supported by plenty of programming languages (Python, C++, etc) and also by plenty of IDEs, but there is not many free of charge plugins for Eclipse.
+    <br/>This editor fills that gap.
+    
+    <h2>Features</h2>
+    <ul>
+        <li>Sections highlighting
+        <br>TOML names sections: <a href="https://toml.io/en/v1.0.0#table">TABLES</a>
+        </li>
+        <li>Key-value pair highlighting</li>
+        <li>Data types highlighting</li>
+        <li>Content assist (simple up to now)
+        <li>Colours preferences:<br>
+            <span class="mono">Preferences... -> General -> Appearance -> Colors and Fonts -> TOML Editor</span>
+         </li>
+        <li>Outline View support</li>
+        <li>Parent-Child level changes in Outline View</li>
+    </ul>
+
+    <h3>More than words...</h3>
+    <p>
+        <table>
+            <tr>
+                <td>Preferences</td>
+                <td><img src="docs/settings.png" width="420" /></td>
+            </tr>
+            <tr>
+                <td>Content Assits</td>
+                <td><img src="docs/assist.png" width="220" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Outline View
+                    <br><span style="font-size:10px; font-style: italic;">with different levels</span>
+                </td>
+                <td>
+                    <img src="docs/outline1.png" width="240" />
+                    <img src="docs/outline2.png" width="240" />
+                    <img src="docs/outline3.png" width="240" />
+                </td>
+            </tr>
+        </table>
+    </p>
+    
+    <p>
+    <br/>Comparision picture shows main differences: <i>without</i> or <i><b>with</b></i> plugin<br/><br/>
+    
+    <img src="docs/usecase.png" width="900" />
+    </p>
     
     <h2>Installation</h2>
     <ul>
-    <li>Add site in Eclipse: https://amadeusitgroup.github.io/eclipse-toml-editor/updates</li>
-    <li>Install newest version</li>
+        <li>In Eclipse: Help/Install New Software...</li>
+        <li>Add site: <span class="addlink">https://amadeusitgroup.github.io/eclipse-toml-editor/updates</span></li>
+        <li>Install newest version</li>
     </ul>
+    <img src="docs/addnew.png" width="800" />
+
+    <h2>Contribution</h2>
+    <p>
+    If you have new ideas and want to improve plugin, <b>just fork</b> source code on GitHub and feel free to create :)
+    </br>
+    Source code: <a href="https://github.com/AmadeusITGroup/eclipse-toml-editor">https://github.com/AmadeusITGroup/eclipse-toml-editor</a>
+    </p>
+    
+    <h3>Some TODO items</h3>
+    Here some ideas that could improve plugin and make work yet easier. More one can read in TODO.md file in source code.
+    
+    <ul>
+        <li>Validation with errors highlighting</li>
+        <li>Improved parsing and tokenizing</li>
+        <li>Arrays highlighting</li>
+        <li>Serialization to JSON</li>
+        <li>Configurable comment character</li>
+    </ul>
+    Check TOML details: <a href="https://toml.io/en/v1.0.0">https://toml.io/en/v1.0.0</a>
+
+    </div>
   </body>
 </html>
