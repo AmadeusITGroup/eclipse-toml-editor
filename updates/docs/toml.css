@@ -8,7 +8,7 @@ body {
     background: floralwhite;
     color: #3A4E70;
     font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.45;
 }
 
@@ -28,7 +28,6 @@ body {
 }
 
 table {
-    font-family: Verdana,Arial,sans-serif;
     border: 0;
     border-collapse:collapse;
     text-align: left;
@@ -40,6 +39,14 @@ td, th {
     border: 1px solid #c3c3c3;
     padding: 10px;
     padding-left: 4px;
+}
+
+.noborder {
+    border: 0;
+}
+
+table.noborder tr, table.noborder td, table.noborder th {
+    border: 0;
 }
 
 img {
