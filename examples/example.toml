@@ -76,3 +76,7 @@ one = 123
 two = 2.3
 three = 0x129A
 four = 0o123
+
+more.keys=enabled
+more.keys.segment.empty=
+more.keys.segment.not-empty=something
